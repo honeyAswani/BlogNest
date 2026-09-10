@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Posts - My Blog</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<header class="navbar">
+    <a class="logo" href="/">My Blog</a>
+
+    <div class="nav-actions">
+        <a class="nav-link" href="/">Home</a>
+        <a class="new-post" href="/new">+ Write Post</a>
+    </div>
+</header>
+
+<main class="posts-section my-posts-page">
+
+    <div class="section-heading">
+        <div>
+            <p class="small-heading">YOUR BLOG</p>
+            <h2 th:text="${currentUsername + '''s Posts'}">My Posts</h2>
+        </div>
+    </div>
+
+    <div class="posts" th:if="${not #lists.isEmpty(listPosts)}">
+
+        <article class="post-card" th:each="post : ${listPosts}">
+
+            <div class="post-number">
+                #<span th:text="${post.id}"></span>
+            </div>
+
+            <h3 th:text="${post.title}">Post Title</h3>
+
+            <p class="content" th:text="${post.content}">
+                Post content...
+            </p>
+
+            <div class="post-footer">
+                <a class="read"
+                   th:href="@{/post/{id}(id=${post.id})}">
+                    Read →
+                </a>
+
+                <a class="edit"
+                   th:href="@{/edit/{id}(id=${post.id})}">
+                    Edit
+                </a>
+
+                <a class="delete"
+                   th:href="@{/delete/{id}(id=${post.id})}"
+                   onclick="return confirm('Are you sure you want to delete this post?');">
+                    Delete
+                </a>
+            </div>
+
+        </article>
+
+    </div>
+
+    <div class="empty-state" th:if="${#lists.isEmpty(listPosts)}">
+        <h3>You haven't written anything yet.</h3>
+        <p>Start with your first post.</p>
+        <a href="/new">Write your first post →</a>
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2026 My Blog · Honey Aswani · Built with Spring Boot</p>
+</footer>
+
+</body>
+</html>

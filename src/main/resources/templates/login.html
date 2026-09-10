@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - My Blog</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<header class="navbar">
+    <a class="logo" href="/">My Blog</a>
+    <a class="new-post" href="/register">Create Account</a>
+</header>
+
+<main class="form-container">
+
+    <div class="form-header">
+        <p class="small-heading">WELCOME BACK</p>
+        <h1>Log in to your account.</h1>
+        <p>Continue writing, reading and sharing your ideas.</p>
+    </div>
+
+    <div class="message success" th:if="${registered}">
+        Account created successfully. You can now log in.
+    </div>
+
+    <div class="message error-message" th:if="${error}">
+        Invalid username or password.
+    </div>
+
+    <div class="message success" th:if="${logout}">
+        You have been logged out.
+    </div>
+
+    <form class="post-form" th:action="@{/login}" method="post">
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username"
+                   placeholder="Enter your username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password"
+                   placeholder="Enter your password" required>
+        </div>
+
+        <div class="form-actions">
+            <a href="/" class="cancel-button">Cancel</a>
+            <button type="submit">Log In →</button>
+        </div>
+
+    </form>
+
+</main>
+
+<footer>
+    <p>© 2026 My Blog · Honey Aswani · Built with Spring Boot</p>
+</footer>
+
+</body>
+</html>

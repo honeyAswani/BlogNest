@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<header class="navbar">
+    <a class="logo" href="/">My Blog</a>
+
+    <div class="nav-actions">
+        <a class="nav-link" th:if="${loggedIn}" href="/my-posts">My Posts</a>
+        <a class="new-post" th:if="${loggedIn}" href="/new">+ Write Post</a>
+        <a class="nav-link" th:if="${!loggedIn}" href="/login">Log In</a>
+        <a class="new-post" th:if="${!loggedIn}" href="/register">Register</a>
+
+        <form th:if="${loggedIn}" th:action="@{/logout}" method="post" class="logout-form">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </div>
+</header>
+
+<main>
+
+<section class="hero">
+    <p class="small-heading">WELCOME TO MY BLOG</p>
+
+    <h1>
+        Ideas, experiences<br>
+        and things worth sharing.
+    </h1>
+
+    <p class="hero-text">
+        A place where I write about what I'm learning,
+        building and exploring.
+    </p>
+
+    <a class="hero-button" th:if="${loggedIn}" href="/new">
+        Start Writing →
+    </a>
+
+    <a class="hero-button" th:if="${!loggedIn}" href="/register">
+        Join the Blog →
+    </a>
+</section>
+
+<section class="posts-section">
+
+    <div class="section-heading">
+        <div>
+            <p class="small-heading">BLOG</p>
+            <h2>Latest Posts</h2>
+        </div>
+
+        <a href="/new" class="write-link" th:if="${loggedIn}">
+            Write something →
+        </a>
+    </div>
+
+    <div class="posts" th:if="${not #lists.isEmpty(listPosts)}">
+
+        <article class="post-card" th:each="post, stat : ${listPosts}">
+
+            <div class="post-number">
+                #<span th:text="${stat.index + 1}"></span>
+            </div>
+
+            <h3 th:text="${post.title}">Post Title</h3>
+
+            <div class="author">
+                By <span th:text="${post.author.username}">Author</span>
+            </div>
+
+            <p class="content" th:text="${post.content}">
+                Post content goes here...
+            </p>
+
+            <div class="post-footer">
+
+                <a class="read"
+                   th:href="@{/post/{id}(id=${post.id})}">
+                    Read Post →
+                </a>
+
+                <div th:if="${loggedIn and post.author.username == currentUsername}">
+                    <a class="edit"
+                       th:href="@{/edit/{id}(id=${post.id})}">
+                        Edit
+                    </a>
+
+                    <form th:action="@{/delete/{id}(id=${post.id})}"
+                          method="post"
+                          style="display: inline;">
+
+                        <button type="submit"
+                                class="delete"
+                                onclick="return confirm('Are you sure you want to delete this post?');">
+                            Delete
+                        </button>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+    <div class="empty-state" th:if="${#lists.isEmpty(listPosts)}">
+        <h3>No posts yet</h3>
+        <p>Your first post is waiting to be written.</p>
+
+        <a th:if="${loggedIn}" href="/new">
+            Create your first post →
+        </a>
+
+        <a th:if="${!loggedIn}" href="/register">
+            Create an account →
+        </a>
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    <p>© 2026 My Blog · Honey Aswani · Built with Spring Boot</p>
+</footer>
+
+</body>
+</html>
