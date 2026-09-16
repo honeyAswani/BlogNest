@@ -56,19 +56,19 @@ https://github.com/honeyAswani/BlogNest
 
 ### Home Page
 
-![Home Page](BlogNest/screenshots/home.png)
+![Home Page](./screenshots/home.png)
 
 ### Login / Register
 
-![Login Page](BlogNest/screenshots/login.png)
+![Login Page](./screenshots/login.png)
 
 ### Create Post
 
-![Create Post](BlogNest/screenshots/create-post.png)
+![Create Post](./screenshots/create-post.png)
 
 ### My Posts
 
-![My Posts](BlogNest/screenshots/my-posts.png)
+![My Posts](./screenshots/my-posts.png)
 
 ## 🏗️ Project Architecture
 
