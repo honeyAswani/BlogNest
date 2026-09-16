@@ -1,32 +1,86 @@
-# Full Blogging Project
+# BlogNest 📝
 
-Spring Boot + Thymeleaf + JPA + MySQL + Spring Security blogging application.
+BlogNest is a full-stack blogging web application built using Java, Spring Boot, Thymeleaf, Spring Security, and MySQL.
 
-## Before running
+It allows users to create, read, update, and delete blog posts with secure authentication and owner-based authorization.
 
-1. Create/use a MySQL database named `blogpost`.
-2. Open `src/main/resources/application.properties`.
-3. Replace `CHANGE_ME` with your MySQL password.
-4. Run the application.
+## 🌐 Live Demo
 
-## Main URLs
+https://blognest-production-ffed.up.railway.app
 
-- `/` - public blog
-- `/register` - registration
-- `/login` - login
-- `/new` - create post (login required)
-- `/my-posts` - your posts (login required)
-- `/post/{id}` - read a post
-- `/edit/{id}` - edit your own post
-- `/delete/{id}` - delete your own post
+## 💻 GitHub Repository
 
-## Authorization test
+https://github.com/honeyAswani/BlogNest
 
-1. Register User A.
-2. Create a post as User A.
-3. Logout.
-4. Register/Login as User B.
-5. User B can read User A's post but cannot edit/delete it.
-6. The ownership check is performed on the backend as well as the UI.
+## ✨ Features
 
-Note: This version is intended as the complete working base that we will study from scratch afterward.
+- User registration and login
+- Secure password encryption using BCrypt
+- Spring Security authentication
+- Create blog posts
+- View blog posts
+- Edit your own posts
+- Delete your own posts
+- My Posts section
+- Owner-based authorization
+- Form validation
+- Responsive design
+- MySQL database integration
+- Cloud deployment using Railway
+
+## 🛠️ Tech Stack
+
+### Backend
+- Java
+- Spring Boot
+- Spring MVC
+- Spring Security
+- Spring Data JPA
+- Hibernate
+
+### Frontend
+- HTML
+- CSS
+- Thymeleaf
+
+### Database
+- MySQL
+
+### Tools & Deployment
+- Maven
+- Git
+- GitHub
+- Railway
+
+## 📸 Screenshots
+
+### Home Page
+
+![Home Page](BlogNest/screenshots/home.png)
+
+### Login / Register
+
+![Login Page](BlogNest/screenshots/login.png)
+
+### Create Post
+
+![Create Post](BlogNest/screenshots/create-post.png)
+
+### My Posts
+
+![My Posts](BlogNest/screenshots/my-posts.png)
+
+## 🏗️ Project Architecture
+
+BlogNest follows a layered architecture:
+
+```text
+                    Browser
+                       ↓
+                  Controller
+                       ↓
+                    Service
+                       ↓
+                  Repository
+                       ↓
+                    MySQL
