@@ -52,11 +52,17 @@
                     Edit
                 </a>
 
-                <a class="delete"
-                   th:href="@{/delete/{id}(id=${post.id})}"
-                   onclick="return confirm('Are you sure you want to delete this post?');">
-                    Delete
-                </a>
+                <form th:action="@{/delete/{id}(id=${post.id})}"
+      method="post"
+      style="display: inline;">
+
+    <button type="submit"
+            class="delete"
+            onclick="return confirm('Are you sure you want to delete this post?');">
+        Delete
+    </button>
+
+</form>
             </div>
 
         </article>
