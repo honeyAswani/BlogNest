@@ -111,13 +111,17 @@ public class PostController {
     }
 
     @PostMapping("/delete/{id}")
-    public String deletePost(
-            @PathVariable int id,
-            Authentication authentication) {
+public String deletePost(
+        @PathVariable int id,
+        Authentication authentication) {
 
+    try {
         postService.deletePost(id, authentication.getName());
         return "redirect:/";
+    } catch (AccessDeniedException e) {
+        return "redirect:/access-denied";
     }
+}
 
     @GetMapping("/my-posts")
     public String myPosts(Model model, Authentication authentication) {
