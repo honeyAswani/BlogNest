@@ -18,7 +18,7 @@
     <description>Full blogging application with authentication and authorization</description>
 
     <properties>
-        <java.version>26</java.version>
+        <java.version>21</java.version>
     </properties>
 
     <dependencies>
@@ -74,4 +74,9 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>production</id>
+        </profile>
+    </profiles>
 </project>
